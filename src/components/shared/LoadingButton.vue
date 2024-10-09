@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import LoadingSpinner from './LoadingSpinner.vue'
+import LoadingSpinner from '@/components/shared/LoadingSpinner.vue'
 
 const { isLoading, isActive } = defineProps<{ isLoading?: boolean; isActive?: boolean }>()
 </script>
@@ -16,6 +16,9 @@ button {
   border: none;
   border-radius: 5%;
   min-width: 8rem;
+}
+button:not(.active)[disabled] {
+  border: 1px solid grey;
 }
 .active {
   background: #00bfff;

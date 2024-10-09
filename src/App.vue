@@ -1,27 +1,5 @@
-<script setup lang="ts">
-import ActionsDropdown from './components/ActionsDropdown.vue'
-import CreateButton from './components/ui/LoadingButton.vue'
-import CreatedEntities from './components/CreatedEntities.vue'
-import { useSelect } from './hooks/use-select'
-import { useEntitiesStore, type Entity } from './stores/entities'
-
-const entitiesStore = useEntitiesStore()
-const { selectedValue, dropdownOptions, isSelected, selectedChangeHandler } = useSelect()
-const createHandler = () => {
-  // console.log(`need create ${selectedValue.value}`)
-  if (!selectedValue.value) {
-    return
-  }
-  const entity = {
-    name: ``,
-    kind: selectedValue.value
-  }
-  entitiesStore.createEntity(entity)
-}
-</script>
-
 <template>
-  <header><h1>Simple Amo Plugin</h1></header>
+  <header><h1>Простой плагин для Amo CRM</h1></header>
   <main class="container">
     <div class="actions">
       <actions-dropdown
@@ -39,11 +17,30 @@ const createHandler = () => {
   </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  text-align: center;
+<script setup lang="ts">
+import ActionsDropdown from '@/components/ActionsDropdown.vue'
+import CreateButton from '@/components/shared/LoadingButton.vue'
+import CreatedEntities from '@/components/CreatedEntities.vue'
+import { useSelect } from '@/hooks/use-select'
+import { useEntitiesStore } from './stores/entities'
+
+const entitiesStore = useEntitiesStore()
+
+const { selectedValue, dropdownOptions, isSelected, selectedChangeHandler } = useSelect()
+
+const createHandler = () => {
+  if (!selectedValue.value) {
+    return
+  }
+  const entity = {
+    name: ``,
+    kind: selectedValue.value
+  }
+  entitiesStore.createEntity(entity)
 }
+</script>
+
+<style scoped>
 .container {
   display: flex;
   flex-direction: column;

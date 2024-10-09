@@ -68,7 +68,7 @@ export const useEntitiesStore = defineStore('entities', () => {
       } else if (embedded.contacts) {
         // console.log('contacts', embedded.contacts)
         entitiesList.value.push({
-          kind: 'leads',
+          kind: 'contacts',
           name: entity.name,
           id: embedded.contacts[0].id
         })
