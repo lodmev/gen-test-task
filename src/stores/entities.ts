@@ -2,6 +2,8 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
+const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000/amo-actions'
+
 export type Entity = {
   kind: 'leads' | 'contacts' | 'companies'
   name: string
@@ -48,7 +50,7 @@ export const useEntitiesStore = defineStore('entities', () => {
     try {
       isLoading.value = true
       const response = await axios.post<Response>(
-        `http://localhost:3000/amo-actions/${entity.kind}`,
+        `${baseURL}/${entity.kind}`,
         JSON.stringify([{ name: entity.name }]),
         { headers: { 'Content-Type': 'application/json' } }
       )
