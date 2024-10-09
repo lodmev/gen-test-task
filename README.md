@@ -1,6 +1,6 @@
-# simple-amo-plugin
+# Simple amoCRM plugin
 
-## Нужно запустить backent локально
+## Нужно запустить бекенд локально
 
 ```sh
 git clone https://github.com/lodmev/gen-test-task-be
