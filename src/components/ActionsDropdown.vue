@@ -17,8 +17,9 @@ type Options = {
 }
 const { options } = defineProps<Options>()
 const emit = defineEmits<{ (e: 'update', value: string): void }>()
-const handleChange = (event) => {
-  emit('update', event.target.value)
+const handleChange = (event: Event) => {
+  const target = event.target as HTMLSelectElement
+  emit('update', target.value)
 }
 </script>
 

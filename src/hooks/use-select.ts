@@ -1,8 +1,9 @@
 import { computed, ref } from 'vue'
 import { type Option } from '@/components/ActionsDropdown.vue'
+import type { Entity } from '@/stores/entities'
 
 export function useSelect() {
-  const selectedValue = ref('')
+  const selectedValue = ref<Entity['kind']>()
   const dropdownOptions: Option[] = [
     {
       name: 'Сделка',
@@ -20,8 +21,10 @@ export function useSelect() {
   const isSelected = computed(() => {
     return !!selectedValue.value
   })
-  const selectedChangeHandler = (value) => {
-    selectedValue.value = value
+  const selectedChangeHandler = (value: string) => {
+    if (value === 'leads' || value === 'contacts' || value === 'companies') {
+      selectedValue.value = value
+    }
   }
   return { selectedValue, dropdownOptions, isSelected, selectedChangeHandler }
 }

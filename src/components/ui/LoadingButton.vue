@@ -1,5 +1,5 @@
 <template>
-  <button :class="{ active: isActive }">
+  <button :class="{ active: isActive }" :disabled="!isActive || isLoading">
     <loading-spinner v-if="isLoading" size="15px"> </loading-spinner><slot v-else></slot>
   </button>
 </template>
